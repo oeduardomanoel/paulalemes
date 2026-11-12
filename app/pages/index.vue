@@ -168,7 +168,7 @@ const marquee = services.map((s) => s.name)
       <div class="container myth__inner">
         <p v-reveal class="eyebrow">O erro mais comum</p>
         <p class="myth__quote">
-          <template v-for="(w, i) in mythWords" :key="i"><span class="myth__word">{{ w }}</span>{{ ' ' }}</template>
+          <span v-for="(w, i) in mythWords" :key="i" class="myth__word">{{ i < mythWords.length - 1 ? w + ' ' : w }}</span>
         </p>
         <div v-reveal class="myth__body">
           <p class="lead">
