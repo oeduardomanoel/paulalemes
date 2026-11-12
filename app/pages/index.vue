@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { site, whatsappLink, fullAddress } from '#shared/site'
 import { services } from '#shared/services'
-import { reviews, faq, symptoms, steps } from '#shared/content'
+import { reviews, faq, symptoms, steps, instagramPosts } from '#shared/content'
 
 const { base } = useSeo({
   title: 'Podóloga em Itapema | Paula Lemes Clínica de Podologia',
@@ -62,6 +62,11 @@ const marquee = services.map((s) => s.name)
               Ver tratamentos <AppIcon name="arrow" class="btn-arrow" />
             </NuxtLink>
           </div>
+
+          <p v-reveal="{ delay: 280 }" class="byline">
+            <img :src="site.images.avatar" alt="" width="40" height="40" class="byline__img" />
+            <span>Quem te atende é a própria <strong>Paula Lemes</strong>, podóloga.</span>
+          </p>
 
           <ul v-reveal="{ delay: 320 }" class="hero__trust">
             <li>
@@ -223,15 +228,17 @@ const marquee = services.map((s) => s.name)
     <section id="sobre" class="section">
       <div class="container about">
         <div v-reveal="'left'" class="about__visual">
-          <img
-            v-if="site.images.paula"
-            :src="site.images.paula"
-            alt="Podóloga Paula Lemes na clínica em Itapema"
-            class="about__photo"
-            loading="lazy"
-            width="800"
-            height="1000"
-          />
+          <picture v-if="site.images.paula" class="about__frame">
+            <source :srcset="site.images.paula" type="image/webp" />
+            <img
+              :src="site.images.paulaJpg"
+              alt="Podóloga Paula Lemes sorrindo, de jaleco branco"
+              class="about__photo"
+              loading="lazy"
+              width="511"
+              height="639"
+            />
+          </picture>
           <div v-else class="about__panel">
             <LogoMark class="about__mark" />
             <p class="about__panel-name">Paula Lemes</p>
@@ -254,7 +261,8 @@ const marquee = services.map((s) => s.name)
           <div v-reveal="{ delay: 120 }" class="about__text">
             <p>
               Sou podóloga aqui em Itapema. Para mim, ser podóloga é proporcionar bem-estar e ter compromisso com a saúde
-              de cada cliente que confia nas minhas mãos.
+              de cada cliente que confia nas minhas mãos. Gosto de pensar assim: cuidar da raiz, que são os pés, para
+              que a árvore, que é o corpo, floresça.
             </p>
             <p>
               Cheguei com a clínica cheia de sonhos e, confesso, cheia de medo também. Foram muitos dias fazendo contas,
@@ -334,6 +342,32 @@ const marquee = services.map((s) => s.name)
             Ver todas no Google <AppIcon name="arrow-up-right" class="btn-arrow" />
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- ============ INSTAGRAM ============ -->
+    <section class="section insta">
+      <div class="container">
+        <div class="insta__head">
+          <div class="section-head">
+            <p v-reveal class="eyebrow">No Instagram</p>
+            <h2 v-reveal="{ delay: 80 }" class="h2">{{ site.followers }} pessoas já acompanham <em class="serif-italic text-brand">a Paula.</em></h2>
+          </div>
+          <a v-reveal :href="site.instagram" target="_blank" rel="noopener" class="btn btn--ghost">
+            <AppIcon name="instagram" /> Seguir {{ site.instagramHandle }}
+          </a>
+        </div>
+        <ul class="insta__grid">
+          <li v-for="(post, i) in instagramPosts" :key="post.code" v-reveal="{ variant: 'scale', delay: i * 70 }">
+            <a :href="`https://www.instagram.com/p/${post.code}/`" target="_blank" rel="noopener" class="insta__item">
+              <img :src="`/images/instagram/${post.code}.webp`" :alt="post.alt" width="640" height="640" loading="lazy" />
+              <span class="insta__overlay">
+                <AppIcon name="instagram" />
+                <span>{{ post.caption }}</span>
+              </span>
+            </a>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -468,6 +502,20 @@ const marquee = services.map((s) => s.name)
   gap: var(--space-2);
   margin-top: var(--space-2);
 }
+.byline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-14);
+  color: var(--ink-soft);
+}
+.byline__img {
+  width: var(--control-md);
+  height: var(--control-md);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--cream-50), 0 0 0 3px var(--sage-400);
+}
 .hero__trust {
   display: flex;
   flex-wrap: wrap;
@@ -487,6 +535,10 @@ const marquee = services.map((s) => s.name)
   align-items: center;
   gap: var(--space-2);
   line-height: 1.3;
+}
+.hero__trust strong,
+.hero__trust small {
+  white-space: nowrap;
 }
 .hero__trust strong {
   display: block;
@@ -869,6 +921,27 @@ const marquee = services.map((s) => s.name)
 .about__visual {
   position: relative;
 }
+.about__frame {
+  display: block;
+  position: relative;
+  border-radius: 240px 240px var(--radius-xl) var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 0 0 8px var(--cream-50), var(--shadow-lg);
+}
+.about__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(63, 72, 48, 0.25));
+  pointer-events: none;
+}
+.about__photo {
+  object-position: 50% 30%;
+  transition: transform 1.2s var(--ease-out);
+}
+.about__visual:hover .about__photo {
+  transform: scale(1.04);
+}
 .about__photo,
 .about__panel {
   width: 100%;
@@ -1095,6 +1168,84 @@ const marquee = services.map((s) => s.name)
   display: flex;
   justify-content: center;
   margin-top: var(--space-5);
+}
+
+/* ---------- INSTAGRAM ---------- */
+.insta {
+  padding-top: 0;
+}
+.insta__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+.insta__head .section-head {
+  margin-bottom: 0;
+}
+.insta__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+.insta__item {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--sage-100);
+}
+.insta__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out), filter var(--dur-slow) var(--ease-out);
+}
+.insta__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: linear-gradient(180deg, rgba(43, 49, 33, 0) 30%, rgba(43, 49, 33, 0.85));
+  color: var(--cream-50);
+  font-size: var(--text-14);
+  font-weight: 500;
+  line-height: 1.4;
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+.insta__overlay svg {
+  width: 24px;
+  height: 24px;
+  transform: translateY(8px);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+.insta__item:hover img {
+  transform: scale(1.06);
+}
+.insta__item:hover .insta__overlay,
+.insta__item:focus-visible .insta__overlay {
+  opacity: 1;
+}
+.insta__item:hover .insta__overlay svg {
+  transform: none;
+}
+@media (min-width: 640px) {
+  .insta__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+}
+@media (min-width: 1024px) {
+  .insta__grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
 /* ---------- FAQ ---------- */

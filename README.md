@@ -22,6 +22,7 @@ npm run generate   # gera .output/public
 - 8 páginas de tratamento (`/tratamentos/...`) com conteúdo próprio para SEO local.
 - JSON-LD: `MedicalBusiness`/`LocalBusiness`, `Person`, `WebSite`, `FAQPage`, `Service`, `MedicalWebPage`, `BreadcrumbList`.
 - `/sitemap.xml`, `/robots.txt` (buscadores e bots de IA liberados), `/llms.txt` e `/llms-full.txt`.
+- Fotos reais do Instagram da Paula (retrato, feed com 6 posts e capas de 2 tratamentos) em `public/images/`.
 - Open Graph 1200×630, favicon SVG/PNG, ícones PWA e manifest.
 - Scroll animations (`v-reveal` + scroll-driven CSS) e hover states em todos os elementos interativos.
 
@@ -31,7 +32,6 @@ Tudo fica em `shared/site.ts`:
 
 - Horário de funcionamento (o Google só confirma quinta, 9h às 18h).
 - Coordenadas (`geo`) do Google Business Profile.
-- Foto da Paula: salve em `public/images/` e preencha `images.paula`.
 - Domínio final.
 
 Regras de design e copy para quem for editar: `AGENTS.md`.

@@ -85,3 +85,13 @@ export const steps = [
     text: 'Você sai com orientação para casa e, quando faz sentido, um plano de retorno para o problema não voltar.',
   },
 ]
+
+/** Posts do Instagram exibidos no feed da home (imagens baixadas para /public/images/instagram). */
+export const instagramPosts = [
+  { code: 'Cyrk3uUsaoG', alt: 'Retrato da podóloga Paula Lemes sorrindo, de jaleco branco', caption: 'Ser podóloga é cuidar da raiz para que a árvore floresça.' },
+  { code: 'Dc4TfYlFFHu', alt: 'Paula Lemes em post sobre unha encravada', caption: 'Pare de cortar o cantinho da unha toda vez que ela encrava.' },
+  { code: 'DaQstEAySvt', alt: 'Unhas com esmaltação em gel vermelha feita na clínica', caption: 'Agora a clínica também faz esmaltação em gel.' },
+  { code: 'Dceq7CiFPmO', alt: 'Post da Paula Lemes: sinais que seus pés estão pedindo atenção', caption: 'Seus pés estão tentando te avisar?' },
+  { code: 'DdCtNYYlL4z', alt: 'Unha do pé com descolamento antes do tratamento', caption: 'Do descolamento à recuperação.' },
+  { code: 'DdZ10_PlHme', alt: 'Avaliação de unha com alteração durante atendimento', caption: 'Cuidar da saúde das unhas também é cuidar dos pés.' },
+]

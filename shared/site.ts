@@ -51,8 +51,10 @@ export const site = {
   foundedYear: 2025,
 
   images: {
-    /** Foto da Paula (retrato). Coloque o arquivo em /public/images e preencha, ex.: '/images/paula.webp'. Vazio = usa o painel com o símbolo. */
-    paula: '',
+    /** Retrato da Paula (do Instagram dela). Vazio = usa o painel com o símbolo. */
+    paula: '/images/paula-lemes-podologa.webp',
+    paulaJpg: '/images/paula-lemes-podologa.jpg',
+    avatar: '/images/paula-avatar.webp',
     sign: '/images/placa-paula-lemes.webp',
     signJpg: '/images/placa-paula-lemes.jpg',
     og: '/og-image.jpg',

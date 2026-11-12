@@ -4,6 +4,8 @@ export interface Service {
   /** Nome técnico, quando existe */
   technical?: string
   icon: 'nail' | 'corner' | 'callus' | 'dot' | 'drop' | 'hand' | 'home' | 'gloss'
+  /** Foto real (Instagram da Paula) para o círculo do topo da página */
+  image?: { src: string; alt: string }
   card: string
   seoTitle: string
   seoDescription: string
@@ -177,6 +179,7 @@ export const services: Service[] = [
     name: 'Unhas alteradas e descolamento',
     technical: 'Onicólise e alterações ungueais',
     icon: 'drop',
+    image: { src: '/images/instagram/DdCtNYYlL4z.webp', alt: 'Unha do pé com descolamento, caso real atendido pela Paula Lemes' },
     card: 'Unha descolando, manchada, grossa ou com aspecto diferente? Cada caso pede avaliação individual.',
     seoTitle: 'Unha descolando ou alterada em Itapema | Podóloga',
     seoDescription:
@@ -280,6 +283,7 @@ export const services: Service[] = [
     slug: 'unhas-e-esmaltacao-em-gel',
     name: 'Unhas e esmaltação em gel',
     icon: 'gloss',
+    image: { src: '/images/instagram/DaQstEAySvt.webp', alt: 'Esmaltação em gel vermelha feita na clínica Paula Lemes' },
     card: 'Cutícula impecável e esmaltação em gel, com o olhar técnico de quem entende de unha.',
     seoTitle: 'Esmaltação em gel em Itapema | Paula Lemes',
     seoDescription:

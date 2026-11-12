@@ -80,9 +80,10 @@ const msg = `Oi, Paula! Vim pelo site e quero agendar uma avaliação para ${ser
               </span>
             </div>
           </div>
-          <div v-reveal="'scale'" class="svc-hero__icon" aria-hidden="true">
+          <div v-reveal="'scale'" class="svc-hero__icon" :aria-hidden="service.image ? undefined : 'true'">
             <span class="svc-hero__halo" />
-            <LogoMark class="svc-hero__mark" />
+            <img v-if="service.image" :src="service.image.src" :alt="service.image.alt" class="svc-hero__img" width="640" height="640" />
+            <LogoMark v-else class="svc-hero__mark" />
           </div>
         </div>
       </div>
@@ -241,6 +242,12 @@ const msg = `Oi, Paula! Vim pelo site e quero agendar uma avaliação para ${ser
 @keyframes breathe {
   from { opacity: 0.5; }
   to { opacity: 1; }
+}
+.svc-hero__img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .svc-hero__mark {
   width: 104px;
